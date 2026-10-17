@@ -9,14 +9,11 @@
 Planned: a B2B customer declares the equipment they own ("Truck model X, plate AB-123-CD") in
 their account, and the catalogue can be filtered to the spare parts compatible with it.
 
-Promotion of the plugin stays suspended until it is rechecked against the technical documentation of Sylius Plus.
-
 ## What exists today
 
 - A Sylius 2.3 plugin skeleton that boots in the test application.
 - [`SPEC.md`](SPEC.md): the planned behaviour and its limits.
 - [`docs/adr/0001-modele-de-donnees-et-filtre.md`](docs/adr/0001-modele-de-donnees-et-filtre.md): data model and filter strategy.
-- [`docs/plus-overlap.md`](docs/plus-overlap.md): comparison with Sylius Plus.
 
 Entities, administration, customer area and the catalogue filter are not implemented.
 

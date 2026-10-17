@@ -9,14 +9,11 @@
 Prévu : un client B2B déclare l'équipement qu'il possède (« Camion modèle X, plaque AB-123-CD ») dans
 son compte, et le catalogue peut être filtré sur les pièces détachées compatibles.
 
-La promotion du plugin reste suspendue tant qu'il n'a pas été revérifié par rapport à la documentation technique de Sylius Plus.
-
 ## Ce qui existe aujourd'hui
 
 - Un squelette de plugin Sylius 2.3 qui démarre dans l'application de test.
 - [`SPEC.md`](SPEC.md) : le comportement prévu et ses limites.
 - [`docs/adr/0001-modele-de-donnees-et-filtre.md`](docs/adr/0001-modele-de-donnees-et-filtre.md) : modèle de données et stratégie de filtre.
-- [`docs/plus-overlap.md`](docs/plus-overlap.md) : comparaison avec Sylius Plus.
 
 Les entités, l'administration, l'espace client et le filtre du catalogue ne sont pas implémentés.
 
