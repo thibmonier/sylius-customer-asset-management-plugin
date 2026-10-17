@@ -1,5 +1,7 @@
 # Sylius Customer Asset Management Plugin
 
+> Français : [README.fr.md](README.fr.md) <!-- vitrine:lang -->
+
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 **Status: design stage. Nothing functional is released yet.**
@@ -29,6 +31,12 @@ vendor/bin/phpstan analyse --memory-limit=1G
 vendor/bin/rector process --dry-run
 vendor/bin/phpunit
 ```
+
+<!-- vitrine:demo-b2b:start -->
+## B2B demo
+
+Status: **not present in the demo** yet. The [Sylius B2B demo](https://github.com/thibmonier/sylius-b2b-demo) does not include this plugin, and no demo page or data exists for it.
+<!-- vitrine:demo-b2b:end -->
 
 ## License
 
