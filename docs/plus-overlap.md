@@ -34,4 +34,5 @@ filtering. The closest features are listed below; none matches.
 
 Per the communication policy, a plugin that overlaps Sylius Plus is not promoted. With this verdict
 there is no known overlap, so promotion remains the maintainer's decision after the recheck above.
+**Promotion stays suspended until the recheck against the technical documentation of Sylius Plus is done.**
 Publication (public repository, Packagist) follows decision D1 of sprint 12 either way.

@@ -18,7 +18,7 @@ which machine. Today the buyer filters by hand or phones the seller.
 | Equipment model | A kind of machine in the catalogue, managed by the merchant (e.g. "Truck model X"). Has a code and a name. |
 | Compatibility | The statement "this product variant fits this equipment model". Many-to-many. |
 | Customer asset | One machine owned by one customer: an equipment model, a free label, an identifier (plate or serial number). |
-| Fleet | All the assets of one customer. |
+| Fleet | All the assets of one customer. If `tmonier/sylius-company-accounts-plugin` is installed, the fleet is shared with the members of the customer's company; the plugin works without it (optional dependency: `require-dev` and `suggest`). |
 | Compatible parts filter | A catalogue listing restricted to variants compatible with at least one asset (or one chosen asset) of the signed-in customer. |
 
 ## 3. Administration (US-056)
@@ -31,7 +31,7 @@ which machine. Today the buyer filters by hand or phones the seller.
 
 - A "My equipment" page in the account: list, add, edit, delete of the customer's assets
   (equipment model, label, plate or serial number).
-- A customer sees and changes **only their own** fleet; any other id answers 404, never 403 (no existence leak).
+- The owner of an asset is the customer who declared it. A customer sees and changes **only their own** fleet (plus, when the company accounts plugin is installed, the fleet of the members of their company); any other id answers 404, never 403 (no existence leak).
 - Ids in URLs are UUIDs (not predictable); all input is validated on the server.
 
 ## 5. Catalogue filter (US-058)

@@ -7,6 +7,8 @@
 Planned: a B2B customer declares the equipment they own ("Truck model X, plate AB-123-CD") in
 their account, and the catalogue can be filtered to the spare parts compatible with it.
 
+Promotion of the plugin stays suspended until it is rechecked against the technical documentation of Sylius Plus.
+
 ## What exists today
 
 - A Sylius 2.3 plugin skeleton that boots in the test application.

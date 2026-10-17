@@ -2,7 +2,7 @@
 
 ## Status
 
-Proposed (2026-10-17), to be accepted at the review of slice 1.
+Accepted (2026-10-17).
 
 ## Context
 
@@ -18,13 +18,14 @@ predictable, server-side validation, GDPR (a plate may be personal data).
    and `customer_asset` (UUID primary key, customer, equipment model, label, identifier).
    No column is added to core entities.
 2. **Compatibility is per variant**, not per product: spare parts differ by variant (size, material).
-3. **Ownership**: `customer_asset.customer_id` is the only owner; a voter authorises view, edit and delete.
+3. **Ownership**: the owner is the customer (`customer_asset.customer_id`); a voter authorises view, edit and delete.
+   If `tmonier/sylius-company-accounts-plugin` is installed, the voter also grants access to the members of the owner's company (optional dependency, `require-dev` and `suggest` only, the plugin works without it).
    A foreign asset answers 404.
 4. **Filter by extending the listing query**: a Doctrine query extension adds a join on the compatibility
    table (`EXISTS` sub-select on the customer's models) to the product listing repository call,
    enabled by a query parameter. No search engine dependency.
-5. **Deletion**: assets are deleted with the customer (`ON DELETE CASCADE` at database level and a
-   Doctrine cascade); identifiers are never logged.
+5. **Deletion**: assets are deleted with the customer (`ON DELETE CASCADE` at database level, planned for the future
+   migration, and a Doctrine cascade); identifiers are never logged.
 6. **Migrations** shipped by the plugin, prepended to the Doctrine migrations configuration as the
    other plugins do.
 
