@@ -1,0 +1,3 @@
+imports:
+    - { resource: "@TmonierSyliusCustomerAssetManagementPlugin/config/config.yaml" }
+    - { resource: "dbal_savepoints.php" }
