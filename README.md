@@ -33,6 +33,8 @@ vendor/bin/phpunit
 ## B2B demo
 
 Status: **not present in the demo** yet. The [Sylius B2B demo](https://github.com/thibmonier/sylius-b2b-demo) does not include this plugin, and no demo page or data exists for it.
+
+- Author: [Thibaut Monier](https://www.linkedin.com/in/thibautmonier/)
 <!-- vitrine:demo-b2b:end -->
 
 ## License
