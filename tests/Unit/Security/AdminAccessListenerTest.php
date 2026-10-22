@@ -55,16 +55,10 @@ final class AdminAccessListenerTest extends TestCase
 
     private function checker(bool $granted): AuthorizationCheckerInterface
     {
-        return new class($granted) implements AuthorizationCheckerInterface {
-            public function __construct(private readonly bool $granted)
-            {
-            }
+        $checker = $this->createStub(AuthorizationCheckerInterface::class);
+        $checker->method('isGranted')->willReturn($granted);
 
-            public function isGranted(mixed $attribute, mixed $subject = null): bool
-            {
-                return $this->granted;
-            }
-        };
+        return $checker;
     }
 
     private function event(string $route): RequestEvent

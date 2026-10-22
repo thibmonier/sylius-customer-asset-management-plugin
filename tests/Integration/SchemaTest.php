@@ -33,7 +33,9 @@ final class SchemaTest extends KernelTestCase
 
         $statements = (new SchemaTool($entityManager))->getUpdateSchemaSql($metadata);
 
-        $own = array_filter($statements, static fn (string $sql): bool => 1 === preg_match('/\b(equipment_model\w*|customer_asset)\b/', $sql));
+        // Only what the migrations fail to create or to align: the DROP statements come from the partial
+        // set of classes (the foreign keys to the tables of Sylius, the identity columns of PostgreSQL).
+        $own = array_filter($statements, static fn (string $sql): bool => 1 === preg_match('/\b(equipment_model\w*|customer_asset)\b/', $sql) && 1 !== preg_match('/\bDROP\b/', $sql));
         self::assertSame([], array_values($own));
     }
 
