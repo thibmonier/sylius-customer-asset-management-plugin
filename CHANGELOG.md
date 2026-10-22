@@ -22,6 +22,10 @@ All notable changes to this project are documented in this file. The format is b
 - Skeleton of the plugin (bundle), quality baseline (ECS, PHPStan max, Rector, PHPUnit), specification
   (`SPEC.md`) and ADR-0001.
 
+### Fixed
+
+- The `equipment` parameter of the listing links shows the selection that applies: a machine outside the fleet becomes `all`, an invalid value is dropped.
+
 ### Changed
 
 - The plugin requires PHP 8.2+ and Sylius 2.2.9+ (it required PHP 8.3+ and Sylius 2.3).

@@ -83,6 +83,10 @@ list, add, edit and delete their machines (equipment model, label, plate or seri
   [`tmonier/sylius-company-accounts-plugin`](https://github.com/thibmonier/sylius-company-accounts-plugin)
   installed, the fleet is shared with the active members of the customer's company; the plugin works
   without it (it is a `suggest`, detected when the container is built).
+- **Shared by the company.** With the company accounts plugin the fleet is common to the company:
+  every active member can see, edit and delete every machine of it, whoever declared it.
+- **Limit.** `max_assets_per_customer` is an application-level cap checked before the insert; it is
+  not guaranteed under simultaneous requests (a few machines more can slip through). This risk is accepted.
 - **No leak of existence.** Machines are referenced by an UUID, never by an integer. The id of a
   machine of someone else, an unknown id and an id that is not an UUID all answer **404**, never 403.
   Every route is authorised by a voter on the machine, and every input is validated on the server.

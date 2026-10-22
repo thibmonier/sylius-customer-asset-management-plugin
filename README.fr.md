@@ -83,6 +83,10 @@ numéro de série de 40 caractères au plus). Un client peut déclarer jusqu'à 
   [`tmonier/sylius-company-accounts-plugin`](https://github.com/thibmonier/sylius-company-accounts-plugin)
   installé, le parc est partagé avec les membres actifs de l'entreprise du client ; le plugin fonctionne
   sans (simple `suggest`, détecté à la construction du conteneur).
+- **Parc commun à l'entreprise.** Avec le plugin de comptes entreprise, le parc est commun à la société :
+  tout membre actif peut voir, modifier et supprimer chaque machine, quel que soit celui qui l'a déclarée.
+- **Plafond.** `max_assets_per_customer` est un plafond applicatif vérifié avant l'insertion ; il n'est pas
+  garanti sous requêtes simultanées (quelques machines de plus peuvent passer). Ce risque est accepté.
 - **Pas de fuite d'existence.** Les machines sont référencées par un UUID, jamais par un entier.
   L'identifiant d'une machine d'autrui, un identifiant inconnu et un identifiant qui n'est pas un UUID
   répondent tous **404**, jamais 403. Chaque route est autorisée par un voter sur la machine, et toute

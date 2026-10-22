@@ -60,11 +60,26 @@ final class CompatibilityFilterResolver
         }
 
         $selection = $this->selection($request, $fleet);
-        if (null !== $selection && null === $this->requested($request)) {
-            $request->query->set(self::PARAMETER, $selection);
-        }
+        $this->alignQuery($request, $selection);
 
         return new CompatibilityFilter($fleet, $ownerIds, $selection);
+    }
+
+    /**
+     * The links of the page are built from the query: it shows the selection that applies (a machine
+     * outside the fleet becomes "all", an invalid value is dropped), never what was asked for.
+     */
+    private function alignQuery(Request $request, ?string $selection): void
+    {
+        if (null !== $selection) {
+            $request->query->set(self::PARAMETER, $selection);
+
+            return;
+        }
+
+        if (self::OFF !== $this->requested($request)) {
+            $request->query->remove(self::PARAMETER);
+        }
     }
 
     /** @param list<CustomerAssetInterface> $fleet */

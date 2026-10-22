@@ -79,6 +79,31 @@ final class CompatibilityFilterResolverTest extends TestCase
         self::assertSame('all', $filter->selection());
     }
 
+    public function testAMachineOutsideTheFleetIsRewrittenToAllInTheQuery(): void
+    {
+        $request = $this->request(['equipment' => self::FOREIGN]);
+
+        $this->resolver(signedIn: true, fleet: [self::MINE])->resolve($request);
+
+        // The links of the page (pagination, sorting) must not carry the foreign id.
+        self::assertSame('all', $request->query->get('equipment'));
+    }
+
+    public function testAnInvalidValueIsDroppedFromTheQueryOrReplacedByTheSessionState(): void
+    {
+        $dropped = $this->request(['equipment' => "1' OR '1'='1", 'limit' => '9']);
+        $this->resolver(signedIn: true, fleet: [self::MINE])->resolve($dropped);
+        self::assertFalse($dropped->query->has('equipment'));
+        self::assertSame('9', $dropped->query->get('limit'));
+
+        $session = new Session(new MockArraySessionStorage());
+        $resolver = $this->resolver(signedIn: true, fleet: [self::MINE]);
+        $resolver->resolve($this->request(['equipment' => 'all'], $session));
+        $replaced = $this->request(['equipment' => 'nonsense'], $session);
+        $resolver->resolve($replaced);
+        self::assertSame('all', $replaced->query->get('equipment'));
+    }
+
     public function testTheStateIsKeptInTheSessionAndPutBackInTheQuery(): void
     {
         $session = new Session(new MockArraySessionStorage());

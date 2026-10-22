@@ -135,6 +135,22 @@ final class ShopFleetTest extends WebTestCase
         self::assertSame(self::PLATE, $reloaded->getIdentifier());
     }
 
+    public function testDeletingWithoutAValidCsrfTokenIsRefusedAndTheMachineStays(): void
+    {
+        $customer = $this->catalog()->customer();
+        $asset = $this->catalog()->asset($customer, $this->catalog()->model('TRUCK', ['en_US' => 'Truck model X']), 'Lyon truck');
+        $this->loginShopUser($customer);
+        $url = $this->shopUrl('/account/equipment/' . $asset->getId() . '/delete');
+
+        $this->client->request('POST', $url);
+        self::assertResponseStatusCodeSame(403);
+        $this->client->request('POST', $url, ['_csrf_token' => 'not-a-valid-token']);
+        self::assertResponseStatusCodeSame(403);
+
+        $this->entityManager()->clear();
+        self::assertNotNull($this->assets()->findOneById($asset->getId()));
+    }
+
     public function testAnIdThatIsNotAUuidAnswers404(): void
     {
         $customer = $this->catalog()->customer();
