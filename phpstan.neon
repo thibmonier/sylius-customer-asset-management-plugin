@@ -6,3 +6,4 @@ parameters:
         - tests/Functional
         - tests/Unit
         - tests/Integration
+        - tests/Support

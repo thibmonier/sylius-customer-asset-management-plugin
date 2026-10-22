@@ -1,0 +1,29 @@
+# Under /{_locale}/account: the Sylius shop access control requires a signed-in customer.
+# The id of a machine is an UUID; anything else is a 404 from the router.
+tmonier_equipment_shop_fleet_index:
+    path: /account/equipment
+    methods: [GET]
+    defaults:
+        _controller: tmonier_equipment.controller.shop.fleet::indexAction
+
+tmonier_equipment_shop_fleet_create:
+    path: /account/equipment/new
+    methods: [GET, POST]
+    defaults:
+        _controller: tmonier_equipment.controller.shop.fleet::createAction
+
+tmonier_equipment_shop_fleet_update:
+    path: /account/equipment/{id}/edit
+    methods: [GET, POST]
+    requirements:
+        id: '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
+    defaults:
+        _controller: tmonier_equipment.controller.shop.fleet::updateAction
+
+tmonier_equipment_shop_fleet_delete:
+    path: /account/equipment/{id}/delete
+    methods: [POST]
+    requirements:
+        id: '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
+    defaults:
+        _controller: tmonier_equipment.controller.shop.fleet::deleteAction

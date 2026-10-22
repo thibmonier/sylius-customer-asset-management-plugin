@@ -1,0 +1,19 @@
+{% from '@SyliusShop/shared/breadcrumbs.html.twig' import breadcrumbs as breadcrumbs %}
+
+{% set context = hookable_metadata.context %}
+{% set items = [
+    { label: 'sylius.ui.home'|trans, path: path('sylius_shop_homepage') },
+    { label: 'sylius.ui.my_account'|trans, path: path('sylius_shop_account_dashboard') },
+] %}
+{% if context.page == 'index' %}
+    {% set items = items|merge([{ label: 'tmonier_equipment.ui.my_equipment'|trans, active: true }]) %}
+{% else %}
+    {% set items = items|merge([
+        { label: 'tmonier_equipment.ui.my_equipment'|trans, path: path('tmonier_equipment_shop_fleet_index') },
+        { label: (context.asset.label is null ? 'tmonier_equipment.ui.add_machine' : 'tmonier_equipment.ui.edit_machine')|trans, active: true },
+    ]) %}
+{% endif %}
+
+<div class="col-12">
+    {{ breadcrumbs(items) }}
+</div>

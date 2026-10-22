@@ -1,0 +1,14 @@
+tmonier_equipment_admin_equipment_model:
+    resource: |
+        alias: tmonier_equipment.equipment_model
+        section: admin
+        templates: "@SyliusAdmin\\shared\\crud"
+        except: ['show']
+        redirect: update
+        grid: tmonier_equipment_admin_equipment_model
+        permission: true
+        path: equipment-models
+        vars:
+            all:
+                hook_prefix: tmonier_equipment_admin.equipment_model
+    type: sylius.resource

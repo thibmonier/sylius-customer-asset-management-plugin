@@ -1,0 +1,46 @@
+sylius_grid:
+    grids:
+        tmonier_equipment_admin_equipment_model:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%tmonier_equipment.model.equipment_model.class%"
+                    repository:
+                        method: createListQueryBuilder
+                        arguments:
+                            locale: "expr:service('sylius.context.locale').getLocaleCode()"
+            sorting:
+                code: asc
+            fields:
+                code:
+                    type: string
+                    label: sylius.ui.code
+                    sortable: ~
+                name:
+                    type: twig
+                    label: sylius.ui.name
+                    path: .
+                    sortable: translation.name
+                    options:
+                        template: "@TmonierSyliusCustomerAssetManagementPlugin/admin/equipment_model/grid/field/name.html.twig"
+                variants:
+                    type: twig
+                    label: tmonier_equipment.ui.compatible_variants
+                    path: .
+                    options:
+                        template: "@TmonierSyliusCustomerAssetManagementPlugin/admin/equipment_model/grid/field/variants.html.twig"
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [code, translation.name]
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

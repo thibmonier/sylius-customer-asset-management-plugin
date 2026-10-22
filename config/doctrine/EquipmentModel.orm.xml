@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <mapped-superclass name="Tmonier\SyliusCustomerAssetManagementPlugin\Entity\EquipmentModel" table="equipment_model">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="code" column="code" type="string" length="64" unique="true" />
+
+        <many-to-many field="compatibleVariants" target-entity="Sylius\Component\Core\Model\ProductVariantInterface" fetch="EXTRA_LAZY">
+            <join-table name="equipment_model_variant">
+                <join-columns>
+                    <join-column name="equipment_model_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="variant_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+    </mapped-superclass>
+
+</doctrine-mapping>

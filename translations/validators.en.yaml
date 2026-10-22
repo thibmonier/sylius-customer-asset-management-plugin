@@ -1,0 +1,21 @@
+tmonier_equipment:
+    equipment_model:
+        code:
+            unique: This code is already in use.
+            not_blank: Please enter the code of the equipment model.
+            max_length: The code must not be longer than {{ limit }} characters.
+        name:
+            max_length: The name must not be longer than {{ limit }} characters.
+    asset:
+        limit_reached: You can declare at most %count% machines.
+        equipment_model:
+            not_null: Please choose an equipment model.
+            invalid: Please choose a valid equipment model.
+        label:
+            not_blank: Please enter a label.
+            max_length: The label must not be longer than {{ limit }} characters.
+            control_characters: The label must not contain control characters.
+        identifier:
+            not_blank: Please enter the plate or the serial number.
+            max_length: The plate or the serial number must not be longer than {{ limit }} characters.
+            control_characters: The plate or the serial number must not contain control characters.

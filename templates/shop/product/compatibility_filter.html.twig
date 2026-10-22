@@ -1,0 +1,35 @@
+{% set filter = tmonier_equipment_compatibility() %}
+
+{% if filter is not null %}
+    {% set route = app.request.attributes.get('_route') %}
+    {% set route_parameters = app.request.attributes.get('_route_params') %}
+    {% set resources = hookable_metadata.context.resources %}
+
+    <section class="mb-4" aria-labelledby="tmonier-equipment-filter-title" {{ sylius_test_html_attribute('tmonier-equipment-filter') }}>
+        <form method="get" action="{{ path(route, route_parameters) }}" class="row g-2 align-items-end">
+            {% for field in tmonier_equipment_query_fields() %}
+                <input type="hidden" name="{{ field.name }}" value="{{ field.value }}">
+            {% endfor %}
+            <div class="col-12 col-md-auto">
+                <label id="tmonier-equipment-filter-title" for="tmonier-equipment-filter-select" class="form-label mb-1">{{ 'tmonier_equipment.filter.label'|trans }}</label>
+                <select id="tmonier-equipment-filter-select" name="equipment" class="form-select">
+                    <option value="off"{{ filter.selection is null ? ' selected' : '' }}>{{ 'tmonier_equipment.filter.all_parts'|trans }}</option>
+                    <option value="all"{{ filter.selection == 'all' ? ' selected' : '' }}>{{ 'tmonier_equipment.filter.all_equipment'|trans }}</option>
+                    {% for asset in filter.assets %}
+                        <option value="{{ asset.id }}"{{ filter.selection == asset.id ? ' selected' : '' }}>{{ asset.label }} ({{ asset.equipmentModel.name is not null ? asset.equipmentModel.name : asset.equipmentModel.code }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-12 col-md-auto">
+                <button type="submit" class="btn btn-primary">{{ 'tmonier_equipment.filter.apply'|trans }}</button>
+            </div>
+        </form>
+
+        {% if filter.active and resources.data.nbResults == 0 %}
+            <div class="alert alert-info mt-3 mb-0" role="status" {{ sylius_test_html_attribute('tmonier-equipment-filter-empty') }}>
+                {{ 'tmonier_equipment.filter.no_compatible_part'|trans }}
+                <a href="{{ path(route, route_parameters|merge(tmonier_equipment_listing_query({equipment: 'off'}))) }}" class="alert-link">{{ 'tmonier_equipment.filter.remove'|trans }}</a>
+            </div>
+        {% endif %}
+    </section>
+{% endif %}

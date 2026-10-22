@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Tmonier\SyliusCustomerAssetManagementPlugin\Entity\CustomerAsset">
+        <property name="equipmentModel">
+            <constraint name="NotNull">
+                <option name="message">tmonier_equipment.asset.equipment_model.not_null</option>
+            </constraint>
+        </property>
+        <property name="label">
+            <constraint name="NotBlank">
+                <option name="message">tmonier_equipment.asset.label.not_blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">255</option>
+                <option name="maxMessage">tmonier_equipment.asset.label.max_length</option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/\A[^\p{Cc}]*\z/u</option>
+                <option name="message">tmonier_equipment.asset.label.control_characters</option>
+            </constraint>
+        </property>
+        <property name="identifier">
+            <constraint name="NotBlank">
+                <option name="message">tmonier_equipment.asset.identifier.not_blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">40</option>
+                <option name="maxMessage">tmonier_equipment.asset.identifier.max_length</option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/\A[^\p{Cc}]*\z/u</option>
+                <option name="message">tmonier_equipment.asset.identifier.control_characters</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

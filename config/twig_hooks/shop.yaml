@@ -1,0 +1,39 @@
+sylius_twig_hooks:
+    hooks:
+        # List of the fleet.
+        'tmonier_equipment_shop.account.equipment_list.index.content':
+            breadcrumbs:
+                template: '@TmonierSyliusCustomerAssetManagementPlugin/shop/account/equipment/common/breadcrumbs.html.twig'
+                priority: 200
+
+        'tmonier_equipment_shop.account.equipment_list.index.content.main.header':
+            title:
+                template: '@TmonierSyliusCustomerAssetManagementPlugin/shop/account/equipment/common/title.html.twig'
+                priority: 100
+
+        'tmonier_equipment_shop.account.equipment_list.index.content.main':
+            section:
+                template: '@TmonierSyliusCustomerAssetManagementPlugin/shop/account/equipment/list.html.twig'
+                priority: -10
+
+        # Add / edit a machine.
+        'tmonier_equipment_shop.account.equipment_form.index.content':
+            breadcrumbs:
+                template: '@TmonierSyliusCustomerAssetManagementPlugin/shop/account/equipment/common/breadcrumbs.html.twig'
+                priority: 200
+
+        'tmonier_equipment_shop.account.equipment_form.index.content.main.header':
+            title:
+                template: '@TmonierSyliusCustomerAssetManagementPlugin/shop/account/equipment/common/title.html.twig'
+                priority: 100
+
+        'tmonier_equipment_shop.account.equipment_form.index.content.main':
+            section:
+                template: '@TmonierSyliusCustomerAssetManagementPlugin/shop/account/equipment/form_section.html.twig'
+                priority: -10
+
+        # "Compatible with my equipment" above the filters of the product listing (categories and their search).
+        'sylius_shop.product.index.content.body.main':
+            tmonier_equipment_filter:
+                template: '@TmonierSyliusCustomerAssetManagementPlugin/shop/product/compatibility_filter.html.twig'
+                priority: 250

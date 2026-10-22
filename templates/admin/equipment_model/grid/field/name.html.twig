@@ -1,0 +1,2 @@
+{# A model without a name in the current locale is shown by its code. #}
+<span {{ sylius_test_html_attribute('tmonier-equipment-model-name', data.code) }}>{{ data.name is not null ? data.name : data.code }}</span>

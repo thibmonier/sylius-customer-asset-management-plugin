@@ -1,0 +1,16 @@
+{% set context = hookable_metadata.context %}
+{% form_theme context.form '@SyliusShop/form/theme.html.twig' %}
+
+<div class="row">
+    <div class="col-lg-8">
+        {{ form_start(context.form, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_errors(context.form) }}
+            {{ form_row(context.form.equipmentModel) }}
+            {{ form_row(context.form.label) }}
+            {{ form_row(context.form.identifier) }}
+            {{ form_rest(context.form) }}
+            <button type="submit" class="btn btn-primary" {{ sylius_test_html_attribute('tmonier-equipment-save') }}>{{ 'sylius.ui.save'|trans }}</button>
+            <a class="btn btn-link" href="{{ path('tmonier_equipment_shop_fleet_index') }}">{{ 'sylius.ui.cancel'|trans }}</a>
+        {{ form_end(context.form, {render_rest: false}) }}
+    </div>
+</div>

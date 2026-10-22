@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <entity name="Tmonier\SyliusCustomerAssetManagementPlugin\Entity\CustomerAsset" table="customer_asset" repository-class="Tmonier\SyliusCustomerAssetManagementPlugin\Repository\CustomerAssetRepository">
+        <indexes>
+            <index name="idx_customer_asset_customer" columns="customer_id" />
+        </indexes>
+
+        <id name="id" column="id" type="guid" />
+
+        <field name="label" column="label" type="string" length="255" />
+        <field name="identifier" column="identifier" type="string" length="40" />
+        <field name="createdAt" column="created_at" type="datetime_immutable" />
+
+        <many-to-one field="customer" target-entity="Sylius\Component\Customer\Model\CustomerInterface">
+            <join-column name="customer_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+        </many-to-one>
+
+        <many-to-one field="equipmentModel" target-entity="Tmonier\SyliusCustomerAssetManagementPlugin\Entity\EquipmentModelInterface">
+            <join-column name="equipment_model_id" referenced-column-name="id" nullable="false" on-delete="RESTRICT" />
+        </many-to-one>
+    </entity>
+
+</doctrine-mapping>

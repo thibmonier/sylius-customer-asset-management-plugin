@@ -1,0 +1,9 @@
+{% set form = hookable_metadata.context.form %}
+
+{% if form.equipmentModels is defined %}
+    <div class="mb-4" {{ sylius_test_html_attribute('tmonier-equipment-compatible-models') }}>
+        <h4 class="mb-3">{{ 'tmonier_equipment.ui.compatible_models'|trans }}</h4>
+        {{ form_row(form.equipmentModels) }}
+        {{ form_widget(form.equipmentModelsPresent) }}
+    </div>
+{% endif %}

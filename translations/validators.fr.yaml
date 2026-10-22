@@ -1,0 +1,21 @@
+tmonier_equipment:
+    equipment_model:
+        code:
+            unique: Ce code est déjà utilisé.
+            not_blank: Veuillez saisir le code du modèle d'équipement.
+            max_length: Le code ne doit pas dépasser {{ limit }} caractères.
+        name:
+            max_length: Le nom ne doit pas dépasser {{ limit }} caractères.
+    asset:
+        limit_reached: Vous pouvez déclarer %count% machines au plus.
+        equipment_model:
+            not_null: Veuillez choisir un modèle d'équipement.
+            invalid: Veuillez choisir un modèle d'équipement valide.
+        label:
+            not_blank: Veuillez saisir un libellé.
+            max_length: Le libellé ne doit pas dépasser {{ limit }} caractères.
+            control_characters: Le libellé ne doit pas contenir de caractères de contrôle.
+        identifier:
+            not_blank: Veuillez saisir la plaque ou le numéro de série.
+            max_length: La plaque ou le numéro de série ne doit pas dépasser {{ limit }} caractères.
+            control_characters: La plaque ou le numéro de série ne doit pas contenir de caractères de contrôle.
