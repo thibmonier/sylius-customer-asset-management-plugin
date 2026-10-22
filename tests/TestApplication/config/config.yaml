@@ -6,3 +6,5 @@ imports:
 # A dedicated role for the model screens, to test the 403 of the administrators who lack it.
 tmonier_sylius_customer_asset_management:
     admin_role: ROLE_EQUIPMENT_MANAGER
+    # Small limit so that the test of the limit stays quick.
+    max_assets_per_customer: 3

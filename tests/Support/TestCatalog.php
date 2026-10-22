@@ -19,6 +19,8 @@ use Sylius\Resource\Factory\FactoryInterface;
 use Tmonier\SyliusCompanyAccountsPlugin\Entity\CompanyInterface;
 use Tmonier\SyliusCompanyAccountsPlugin\Entity\CompanyMemberInterface;
 use Tmonier\SyliusCompanyAccountsPlugin\Factory\CompanyMemberFactoryInterface;
+use Tmonier\SyliusCustomerAssetManagementPlugin\Entity\CustomerAsset;
+use Tmonier\SyliusCustomerAssetManagementPlugin\Entity\CustomerAssetInterface;
 use Tmonier\SyliusCustomerAssetManagementPlugin\Entity\EquipmentModelInterface;
 use Webmozart\Assert\Assert;
 
@@ -114,6 +116,19 @@ final class TestCatalog
         $this->entityManager()->flush();
 
         return $model;
+    }
+
+    public function asset(CustomerInterface $owner, EquipmentModelInterface $model, string $label = 'Truck', string $identifier = 'AB-123-CD'): CustomerAssetInterface
+    {
+        $asset = new CustomerAsset();
+        $asset->setCustomer($owner);
+        $asset->setEquipmentModel($model);
+        $asset->setLabel($label);
+        $asset->setIdentifier($identifier);
+        $this->entityManager()->persist($asset);
+        $this->entityManager()->flush();
+
+        return $asset;
     }
 
     public function taxon(string $code = 'PARTS'): TaxonInterface

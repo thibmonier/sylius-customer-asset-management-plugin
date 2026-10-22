@@ -3,6 +3,16 @@ tmonier_equipment:
         equipment_models: Modèles d'équipement
         compatible_variants: Variantes compatibles
         compatible_models: Modèles compatibles
+        my_equipment: Mon matériel
+        add_machine: Ajouter une machine
+        edit_machine: Modifier la machine
+        no_machines: Vous n'avez pas encore déclaré de machine.
+        label: Libellé
+        equipment_model: Modèle d'équipement
+        identifier: Plaque ou numéro de série
+        actions: Actions
+        confirm_delete: Retirer cette machine de votre matériel ?
+        fleet_help: Les machines sont partagées avec les autres membres de votre entreprise. La plaque ou le numéro de série n'est visible que par vous et par eux.
     form:
         equipment_model:
             translations: Noms
@@ -10,3 +20,10 @@ tmonier_equipment:
         variant:
             compatible_models: Modèles compatibles
             compatible_models_help: Les machines sur lesquelles cette variante se monte. Les clients peuvent alors filtrer le catalogue sur les pièces compatibles avec leur matériel.
+        asset:
+            equipment_model: Modèle d'équipement
+            choose_model: Choisissez un modèle
+            label: Libellé
+            label_help: Un nom qui vous aide à retrouver la machine, par exemple « Camion de Lyon ».
+            identifier: Plaque ou numéro de série
+            identifier_help: 40 caractères au plus.

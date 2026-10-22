@@ -6,6 +6,7 @@ namespace Tests\Tmonier\SyliusCustomerAssetManagementPlugin\Unit\DependencyInjec
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Tmonier\SyliusCompanyAccountsPlugin\DependencyInjection\TmonierSyliusCompanyAccountsExtension;
 use Tmonier\SyliusCustomerAssetManagementPlugin\DependencyInjection\TmonierSyliusCustomerAssetManagementExtension;
 
 final class TmonierSyliusCustomerAssetManagementExtensionTest extends TestCase
@@ -44,5 +45,32 @@ final class TmonierSyliusCustomerAssetManagementExtensionTest extends TestCase
         self::assertTrue($container->hasDefinition('tmonier_equipment.repository.equipment_model'));
         self::assertTrue($container->hasDefinition('tmonier_equipment.factory.equipment_model'));
         self::assertTrue($container->hasParameter('tmonier_equipment.model.equipment_model_translation.class'));
+    }
+
+    public function testWithoutTheCompanyAccountsPluginTheFleetIsTheOneOfTheCustomer(): void
+    {
+        $container = new ContainerBuilder();
+        $extension = new TmonierSyliusCustomerAssetManagementExtension();
+
+        $extension->prepend($container);
+        $extension->load([], $container);
+
+        self::assertFalse($container->getParameter('tmonier_equipment.company_accounts_bridge'));
+        self::assertSame('tmonier_equipment.fleet_scope.customer', (string) $container->getAlias('tmonier_equipment.fleet_scope'));
+    }
+
+    public function testWithTheCompanyAccountsPluginTheFleetIsSharedWithTheCompany(): void
+    {
+        $container = new ContainerBuilder();
+        $container->registerExtension(new TmonierSyliusCompanyAccountsExtension());
+        $extension = new TmonierSyliusCustomerAssetManagementExtension();
+
+        $extension->prepend($container);
+        $extension->load([], $container);
+
+        self::assertTrue($container->getParameter('tmonier_equipment.company_accounts_bridge'));
+        self::assertSame('tmonier_equipment.fleet_scope.company', (string) $container->getAlias('tmonier_equipment.fleet_scope'));
+        $reset = $container->getDefinition('tmonier_equipment.fleet_scope.company')->getTag('kernel.reset');
+        self::assertSame([['method' => 'reset']], $reset);
     }
 }

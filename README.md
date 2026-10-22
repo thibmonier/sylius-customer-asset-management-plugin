@@ -73,6 +73,26 @@ To restrict the screens, set `admin_role` to a role of your own (for example `RO
 and give it to the administrators concerned: the others get a 403 on the model screens and do not
 see the field on the variant form.
 
+## Customer account: "My equipment"
+
+A signed-in customer finds *My equipment* in the menu of their account (`/{_locale}/account/equipment`):
+list, add, edit and delete their machines (equipment model, label, plate or serial number of up to
+40 characters). A customer can declare up to `max_assets_per_customer` machines.
+
+- **Isolation.** A customer sees and changes only their own fleet. With
+  [`tmonier/sylius-company-accounts-plugin`](https://github.com/thibmonier/sylius-company-accounts-plugin)
+  installed, the fleet is shared with the active members of the customer's company; the plugin works
+  without it (it is a `suggest`, detected when the container is built).
+- **No leak of existence.** Machines are referenced by an UUID, never by an integer. The id of a
+  machine of someone else, an unknown id and an id that is not an UUID all answer **404**, never 403.
+  Every route is authorised by a voter on the machine, and every input is validated on the server.
+- **Personal data.** A plate or a serial number can identify a person (sole trader), so it is
+  personal data under the GDPR: it is never written to a log, never put in a URL, and it is deleted
+  with the customer account (`ON DELETE CASCADE` and a Doctrine listener).
+- **Rate limiting** of the creation of machines is left to your application (for example the Symfony
+  rate limiter on the route `tmonier_equipment_shop_fleet_create`).
+- An equipment model used by at least one machine cannot be deleted in the administration.
+
 ## Development
 
 Requirements: PHP 8.2+, Composer, a MySQL database (see `tests/TestApplication/.env`).

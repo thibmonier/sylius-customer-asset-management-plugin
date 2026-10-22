@@ -73,6 +73,27 @@ Pour restreindre les écrans, donnez à `admin_role` un rôle à vous (par exemp
 et attribuez-le aux administrateurs concernés : les autres reçoivent un 403 sur les écrans des modèles
 et ne voient pas le champ du formulaire de variante.
 
+## Espace client : « Mon matériel »
+
+Un client connecté trouve *Mon matériel* dans le menu de son compte (`/{_locale}/account/equipment`) :
+liste, ajout, modification et suppression de ses machines (modèle d'équipement, libellé, plaque ou
+numéro de série de 40 caractères au plus). Un client peut déclarer jusqu'à `max_assets_per_customer` machines.
+
+- **Cloisonnement.** Un client ne voit et ne modifie que son propre parc. Avec
+  [`tmonier/sylius-company-accounts-plugin`](https://github.com/thibmonier/sylius-company-accounts-plugin)
+  installé, le parc est partagé avec les membres actifs de l'entreprise du client ; le plugin fonctionne
+  sans (simple `suggest`, détecté à la construction du conteneur).
+- **Pas de fuite d'existence.** Les machines sont référencées par un UUID, jamais par un entier.
+  L'identifiant d'une machine d'autrui, un identifiant inconnu et un identifiant qui n'est pas un UUID
+  répondent tous **404**, jamais 403. Chaque route est autorisée par un voter sur la machine, et toute
+  saisie est validée côté serveur.
+- **Données personnelles.** Une plaque ou un numéro de série peut identifier une personne (entrepreneur
+  individuel) : c'est une donnée personnelle au sens du RGPD. Elle n'est jamais écrite dans un journal,
+  jamais placée dans une URL, et supprimée avec le compte client (`ON DELETE CASCADE` et un écouteur Doctrine).
+- **Limitation du débit** de la création de machines : laissée à votre application (par exemple le
+  rate limiter de Symfony sur la route `tmonier_equipment_shop_fleet_create`).
+- Un modèle d'équipement utilisé par au moins une machine ne peut pas être supprimé en administration.
+
 ## Développement
 
 Prérequis : PHP 8.2+, Composer, une base MySQL (voir `tests/TestApplication/.env`).

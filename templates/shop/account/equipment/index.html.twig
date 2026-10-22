@@ -1,0 +1,6 @@
+{% extends '@SyliusShop/account/common/index.html.twig' %}
+
+{% set prefixes = ['tmonier_equipment_shop.account.equipment_list'] %}
+{% set attrs = { assets, page: 'index' } %}
+
+{% block title %}{{ 'tmonier_equipment.ui.my_equipment'|trans }} | {{ parent() }}{% endblock %}

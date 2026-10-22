@@ -79,7 +79,7 @@ trait EquipmentTestTrait
         return $entityManager;
     }
 
-    private function idOf(EquipmentModelInterface|ProductVariantInterface $resource): int
+    private function idOf(CustomerInterface|EquipmentModelInterface|ProductVariantInterface $resource): int
     {
         $id = $resource->getId();
         Assert::integer($id);

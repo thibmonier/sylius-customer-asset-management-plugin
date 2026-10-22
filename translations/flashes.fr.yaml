@@ -1,0 +1,6 @@
+tmonier_equipment:
+    asset_created: La machine a été ajoutée à votre matériel.
+    asset_updated: La machine a été modifiée.
+    asset_deleted: La machine a été retirée de votre matériel.
+    equipment_model:
+        in_use: '{1} 1 machine utilise ce modèle d''équipement : il ne peut pas être supprimé.|]1,Inf[ %count% machines utilisent ce modèle d''équipement : il ne peut pas être supprimé.'

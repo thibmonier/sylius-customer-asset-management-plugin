@@ -27,12 +27,13 @@ final class SchemaTest extends KernelTestCase
             [
                 \Tmonier\SyliusCustomerAssetManagementPlugin\Entity\EquipmentModelInterface::class,
                 \Tmonier\SyliusCustomerAssetManagementPlugin\Entity\EquipmentModelTranslationInterface::class,
+                \Tmonier\SyliusCustomerAssetManagementPlugin\Entity\CustomerAsset::class,
             ],
         );
 
         $statements = (new SchemaTool($entityManager))->getUpdateSchemaSql($metadata);
 
-        $own = array_filter($statements, static fn (string $sql): bool => 1 === preg_match('/\bequipment_model\w*\b/', $sql));
+        $own = array_filter($statements, static fn (string $sql): bool => 1 === preg_match('/\b(equipment_model\w*|customer_asset)\b/', $sql));
         self::assertSame([], array_values($own));
     }
 

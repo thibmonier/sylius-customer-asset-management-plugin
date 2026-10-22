@@ -10,12 +10,15 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Tmonier\SyliusCompanyAccountsPlugin\Repository\CompanyMemberRepositoryInterface;
 
 final class TmonierSyliusCustomerAssetManagementExtension extends AbstractResourceExtension implements PrependExtensionInterface
 {
     use PrependDoctrineMigrationsTrait;
 
     public const RESOURCES_APPLICATION = 'tmonier_equipment';
+
+    private const COMPANY_ACCOUNTS_PARAMETER = 'tmonier_equipment.company_accounts_bridge';
 
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -28,6 +31,11 @@ final class TmonierSyliusCustomerAssetManagementExtension extends AbstractResour
 
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.php');
+
+        // Optional bridge: the fleet is shared with the company of the customer.
+        if (true === ($container->hasParameter(self::COMPANY_ACCOUNTS_PARAMETER) ? $container->getParameter(self::COMPANY_ACCOUNTS_PARAMETER) : false)) {
+            $loader->load('services/company_accounts.php');
+        }
     }
 
     public function prepend(ContainerBuilder $container): void
@@ -43,6 +51,12 @@ final class TmonierSyliusCustomerAssetManagementExtension extends AbstractResour
         foreach ($config['resources'] as $name => $resource) {
             $container->setParameter(sprintf('%s.model.%s.class', self::RESOURCES_APPLICATION, $name), $resource['classes']['model']);
         }
+
+        // Set at prepend time, when the other extensions are known.
+        $container->setParameter(
+            self::COMPANY_ACCOUNTS_PARAMETER,
+            $container->hasExtension('tmonier_sylius_company_accounts') && interface_exists(CompanyMemberRepositoryInterface::class),
+        );
 
         $container->prependExtensionConfig('doctrine', [
             'orm' => [

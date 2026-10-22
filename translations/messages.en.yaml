@@ -3,6 +3,16 @@ tmonier_equipment:
         equipment_models: Equipment models
         compatible_variants: Compatible variants
         compatible_models: Compatible equipment models
+        my_equipment: My equipment
+        add_machine: Add a machine
+        edit_machine: Edit the machine
+        no_machines: You have not declared any machine yet.
+        label: Label
+        equipment_model: Equipment model
+        identifier: Plate or serial number
+        actions: Actions
+        confirm_delete: Remove this machine from your equipment?
+        fleet_help: The machines are shared with the other members of your company. The plate or serial number is only shown to you and to them.
     form:
         equipment_model:
             translations: Names
@@ -10,3 +20,10 @@ tmonier_equipment:
         variant:
             compatible_models: Compatible equipment models
             compatible_models_help: The machines this variant fits. Customers can then filter the catalogue to the parts that fit their equipment.
+        asset:
+            equipment_model: Equipment model
+            choose_model: Choose a model
+            label: Label
+            label_help: A name that helps you find the machine, for example "Lyon truck".
+            identifier: Plate or serial number
+            identifier_help: Up to 40 characters.

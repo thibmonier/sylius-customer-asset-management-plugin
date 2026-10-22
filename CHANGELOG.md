@@ -9,6 +9,10 @@ All notable changes to this project are documented in this file. The format is b
 
 - Equipment models (code, translated name) managed in the administration, and the choice of the
   compatible equipment models on the form of a product variant (US-056).
+- "My equipment" in the customer account: list, add, edit and delete the machines of the customer
+  (UUID, voter, 404 for a machine that is not the customer's, shared with the company when the company
+  accounts plugin is installed, `max_assets_per_customer`, deleted with the customer) (US-057).
+- An equipment model used by a machine cannot be deleted in the administration (US-057).
 - CI on PHP 8.2 to 8.5 (Sylius 2.2 and 2.3, Symfony 6.4 to 8.0, MySQL, MariaDB, PostgreSQL), actions
   pinned by SHA, minimal `permissions`, Dependabot for the GitHub Actions.
 - Skeleton of the plugin (bundle), quality baseline (ECS, PHPStan max, Rector, PHPUnit), specification
