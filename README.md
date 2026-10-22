@@ -114,6 +114,19 @@ so the pagination and the sorting keep it.
   A listing that does not go through that grid (a custom controller, an API collection, a search
   engine) needs its own hook: the plugin does not change it.
 
+## Screenshots
+
+![My equipment: the machines declared in the customer account](docs/images/shop-equipment-fleet-desktop-en.jpg)
+
+![Adding a machine](docs/images/shop-equipment-form-desktop-en.jpg)
+
+![Catalogue filtered on the parts compatible with the customer's equipment](docs/images/shop-compatible-filter-desktop-en.jpg)
+
+![Message when no product fits, with the link to remove the filter](docs/images/shop-compatible-filter-empty-desktop-en.jpg)
+
+![My equipment on mobile](docs/images/shop-equipment-fleet-mobile-en.jpg)
+
+
 ## Development
 
 Requirements: PHP 8.2+, Composer, a MySQL database (see `tests/TestApplication/.env`).

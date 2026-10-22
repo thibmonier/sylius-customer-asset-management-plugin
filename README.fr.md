@@ -115,6 +115,19 @@ pagination et le tri le gardent.
   Une liste qui ne passe pas par cette grille (contrôleur sur mesure, collection d'API, moteur de
   recherche) demande son propre point d'accroche : le plugin ne la modifie pas.
 
+## Captures d'écran
+
+![Mon matériel : les machines déclarées dans l'espace client](docs/images/shop-equipment-fleet-desktop-fr.jpg)
+
+![Ajout d'une machine](docs/images/shop-equipment-form-desktop-fr.jpg)
+
+![Catalogue filtré sur les pièces compatibles avec le matériel du client](docs/images/shop-compatible-filter-desktop-fr.jpg)
+
+![Message quand aucun produit ne convient, avec le lien pour retirer le filtre](docs/images/shop-compatible-filter-empty-desktop-fr.jpg)
+
+![Mon matériel sur mobile](docs/images/shop-equipment-fleet-mobile-fr.jpg)
+
+
 ## Développement
 
 Prérequis : PHP 8.2+, Composer, une base MySQL (voir `tests/TestApplication/.env`).
