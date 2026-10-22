@@ -1,0 +1,8 @@
+tmonier_equipment:
+    equipment_model:
+        code:
+            unique: This code is already in use.
+            not_blank: Please enter the code of the equipment model.
+            max_length: The code must not be longer than {{ limit }} characters.
+        name:
+            max_length: The name must not be longer than {{ limit }} characters.

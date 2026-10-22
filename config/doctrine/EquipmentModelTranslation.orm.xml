@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <mapped-superclass name="Tmonier\SyliusCustomerAssetManagementPlugin\Entity\EquipmentModelTranslation" table="equipment_model_translation">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="name" column="name" type="string" length="255" nullable="true" />
+    </mapped-superclass>
+
+</doctrine-mapping>

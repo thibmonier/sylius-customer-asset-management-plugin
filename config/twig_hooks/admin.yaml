@@ -1,0 +1,11 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.product_variant.update.content.form.sections.general.body':
+            tmonier_equipment_compatible_models:
+                template: '@TmonierSyliusCustomerAssetManagementPlugin/admin/product_variant/compatible_models.html.twig'
+                priority: -100
+
+        'sylius_admin.product_variant.create.content.form.sections.general.body':
+            tmonier_equipment_compatible_models:
+                template: '@TmonierSyliusCustomerAssetManagementPlugin/admin/product_variant/compatible_models.html.twig'
+                priority: -100

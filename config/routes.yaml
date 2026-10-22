@@ -1,0 +1,8 @@
+# Import this file from your application's config/routes:
+#
+# tmonier_sylius_customer_asset_management:
+#     resource: "@TmonierSyliusCustomerAssetManagementPlugin/config/routes.yaml"
+
+tmonier_equipment_admin:
+    resource: "@TmonierSyliusCustomerAssetManagementPlugin/config/routes/admin.yaml"
+    prefix: '/%sylius_admin.path_name%'

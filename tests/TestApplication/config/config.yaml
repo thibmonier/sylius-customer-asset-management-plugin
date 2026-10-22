@@ -1,3 +1,8 @@
 imports:
+    - { resource: "@TmonierSyliusCompanyAccountsPlugin/config/config.yaml" }
     - { resource: "@TmonierSyliusCustomerAssetManagementPlugin/config/config.yaml" }
     - { resource: "dbal_savepoints.php" }
+
+# A dedicated role for the model screens, to test the 403 of the administrators who lack it.
+tmonier_sylius_customer_asset_management:
+    admin_role: ROLE_EQUIPMENT_MANAGER

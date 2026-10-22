@@ -1,0 +1,12 @@
+tmonier_equipment:
+    ui:
+        equipment_models: Modèles d'équipement
+        compatible_variants: Variantes compatibles
+        compatible_models: Modèles compatibles
+    form:
+        equipment_model:
+            translations: Noms
+            name: Nom
+        variant:
+            compatible_models: Modèles compatibles
+            compatible_models_help: Les machines sur lesquelles cette variante se monte. Les clients peuvent alors filtrer le catalogue sur les pièces compatibles avec leur matériel.

@@ -1,1 +1,5 @@
-# The plugin has no routes; the file is required by the test application.
+tmonier_sylius_customer_asset_management:
+    resource: "@TmonierSyliusCustomerAssetManagementPlugin/config/routes.yaml"
+
+tmonier_sylius_company_accounts:
+    resource: "@TmonierSyliusCompanyAccountsPlugin/config/routes.yaml"

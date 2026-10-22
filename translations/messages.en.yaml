@@ -1,0 +1,12 @@
+tmonier_equipment:
+    ui:
+        equipment_models: Equipment models
+        compatible_variants: Compatible variants
+        compatible_models: Compatible equipment models
+    form:
+        equipment_model:
+            translations: Names
+            name: Name
+        variant:
+            compatible_models: Compatible equipment models
+            compatible_models_help: The machines this variant fits. Customers can then filter the catalogue to the parts that fit their equipment.
