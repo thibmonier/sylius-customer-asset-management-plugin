@@ -33,7 +33,8 @@ final class CustomerAssetVoter extends Voter
         return \in_array($attribute, [self::VIEW, self::EDIT, self::DELETE], true) && $subject instanceof CustomerAssetInterface;
     }
 
-    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
+    // The fourth parameter (a Vote since Symfony 7.3) keeps the signature valid on every supported Symfony.
+    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token, mixed $vote = null): bool
     {
         $user = $token->getUser();
         $ownerId = $subject->getCustomer()?->getId();
