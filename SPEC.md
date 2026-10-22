@@ -1,9 +1,8 @@
 # Specification — customer asset management plugin
 
-US-054 of the B2B demo (sprint 12), slice 1: framing only, no functional code. Standalone plugin:
-a customer declares the equipment fleet they own, the catalogue can be filtered to the spare parts
-compatible with it. Implementation slices: US-056 to US-060 (section 8).
-Checked against Sylius 2.3 (`sylius/sylius ^2.3`).
+Standalone plugin: a customer declares the equipment fleet they own, the catalogue can be filtered
+to the spare parts compatible with it. Framed in US-054 (sprint 12), implemented in US-056 to
+US-058 (sprint 21), see section 8. Checked against Sylius 2.2 and 2.3 (`sylius/sylius ^2.2.9 || ^2.3`).
 
 ## 1. Targets and need
 
@@ -44,8 +43,7 @@ which machine. Today the buyer filters by hand or phones the seller.
 ## 6. Out of scope
 
 Maintenance or intervention management; bulk import of fleets; telematics; compatibility rules
-by year or option (only model-to-variant); price or stock logic; any promotion of the plugin
-(depends on `docs/plus-overlap.md`).
+by year or option (only model-to-variant); price or stock logic; a filter on the API.
 
 ## 7. Privacy and security
 
@@ -55,10 +53,19 @@ by year or option (only model-to-variant); price or stock logic; any promotion o
 
 ## 8. Slicing of the next stories
 
-| Story | Content |
-|---|---|
-| US-056 | Equipment models and variant compatibility (admin) |
-| US-057 | Customer fleet CRUD (customer area) |
-| US-058 | "Compatible parts" catalogue filter |
-| US-059 | Publication (tag, Packagist, submitted by the maintainer) |
-| US-060 | Integration in the B2B demo (demo data, plugin list entry) |
+| Story | Content | Status |
+|---|---|---|
+| US-056 | Equipment models and variant compatibility (admin) | Done (0.1.0) |
+| US-057 | Customer fleet CRUD (customer area) | Done (0.1.0) |
+| US-058 | "Compatible parts" catalogue filter | Done (0.1.0) |
+| US-059 | Publication (tag, Packagist, submitted by the maintainer) | Next |
+| US-060 | Integration in the B2B demo (demo data, plugin list entry) | Next |
+
+## 9. Notes on the implementation
+
+- Administration: the screens of the equipment models need the role `admin_role` (default: any
+  administrator); a model used by a machine cannot be deleted.
+- The filter is the `equipment` query parameter (`all`, the UUID of a machine, or `off`) of the
+  listing of a category and of its search, kept in the session. It is applied to the listing query of
+  Sylius (grid `sylius_shop_product`); a listing that does not go through that grid needs its own hook.
+- A customer is limited to `max_assets_per_customer` machines (default 50).

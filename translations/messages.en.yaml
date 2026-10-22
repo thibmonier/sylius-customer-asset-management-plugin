@@ -27,3 +27,10 @@ tmonier_equipment:
             label_help: A name that helps you find the machine, for example "Lyon truck".
             identifier: Plate or serial number
             identifier_help: Up to 40 characters.
+    filter:
+        label: Compatible with my equipment
+        all_parts: All parts (no filter)
+        all_equipment: All my equipment
+        apply: Apply
+        no_compatible_part: No part compatible with your equipment.
+        remove: Remove the filter

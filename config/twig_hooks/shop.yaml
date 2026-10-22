@@ -31,3 +31,9 @@ sylius_twig_hooks:
             section:
                 template: '@TmonierSyliusCustomerAssetManagementPlugin/shop/account/equipment/form_section.html.twig'
                 priority: -10
+
+        # "Compatible with my equipment" above the filters of the product listing (categories and their search).
+        'sylius_shop.product.index.content.body.main':
+            tmonier_equipment_filter:
+                template: '@TmonierSyliusCustomerAssetManagementPlugin/shop/product/compatibility_filter.html.twig'
+                priority: 250

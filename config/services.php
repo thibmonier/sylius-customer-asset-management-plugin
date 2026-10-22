@@ -8,6 +8,8 @@ use Tmonier\SyliusCustomerAssetManagementPlugin\Controller\Shop\FleetController;
 use Tmonier\SyliusCustomerAssetManagementPlugin\EventListener\AdminAccessListener;
 use Tmonier\SyliusCustomerAssetManagementPlugin\EventListener\CustomerRemovalListener;
 use Tmonier\SyliusCustomerAssetManagementPlugin\EventListener\EquipmentModelDeletionGuard;
+use Tmonier\SyliusCustomerAssetManagementPlugin\Filter\CompatibilityFilterResolver;
+use Tmonier\SyliusCustomerAssetManagementPlugin\Filter\CompatibleProductsFiltersApplicator;
 use Tmonier\SyliusCustomerAssetManagementPlugin\Fleet\CustomerFleetScope;
 use Tmonier\SyliusCustomerAssetManagementPlugin\Fleet\FleetScopeInterface;
 use Tmonier\SyliusCustomerAssetManagementPlugin\Form\Extension\ProductVariantTypeExtension;
@@ -21,6 +23,7 @@ use Tmonier\SyliusCustomerAssetManagementPlugin\Repository\CustomerAssetReposito
 use Tmonier\SyliusCustomerAssetManagementPlugin\Repository\EquipmentModelRepositoryInterface;
 use Tmonier\SyliusCustomerAssetManagementPlugin\Security\CustomerAssetVoter;
 use Tmonier\SyliusCustomerAssetManagementPlugin\Security\EquipmentAdminAccess;
+use Tmonier\SyliusCustomerAssetManagementPlugin\Twig\CompatibilityFilterExtension;
 use Tmonier\SyliusCustomerAssetManagementPlugin\Twig\EquipmentModelExtension;
 
 return static function (ContainerConfigurator $container): void {
@@ -127,6 +130,30 @@ return static function (ContainerConfigurator $container): void {
     $services
         ->set('tmonier_equipment.twig.equipment_model', EquipmentModelExtension::class)
         ->args([service('tmonier_equipment.repository.equipment_model')])
+        ->tag('twig.extension')
+    ;
+
+    // "Compatible parts" filter of the product listing.
+    $services
+        ->set('tmonier_equipment.filter.resolver', CompatibilityFilterResolver::class)
+        ->args([
+            service('security.token_storage'),
+            service('tmonier_equipment.fleet_scope'),
+            service('tmonier_equipment.repository.customer_asset'),
+        ])
+    ;
+    $services
+        ->set('tmonier_equipment.filter.products_applicator', CompatibleProductsFiltersApplicator::class)
+        ->decorate('sylius.grid.filters_applicator')
+        ->args([
+            service('.inner'),
+            service('request_stack'),
+            service('tmonier_equipment.filter.resolver'),
+        ])
+    ;
+    $services
+        ->set('tmonier_equipment.twig.compatibility_filter', CompatibilityFilterExtension::class)
+        ->args([service('request_stack'), service('tmonier_equipment.filter.resolver')])
         ->tag('twig.extension')
     ;
 };

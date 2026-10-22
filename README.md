@@ -8,7 +8,7 @@ A B2B customer declares the equipment they own ("Truck model X, plate AB-123-CD"
 and the catalogue can be filtered to the spare parts compatible with it. Behaviour: [`SPEC.md`](SPEC.md);
 decisions: [`docs/adr/`](docs/adr/).
 
-**Status: 0.1.0 in preparation (not released yet).**
+**Status: 0.1.0 ready to be tagged (not released yet).**
 
 ## Requirements
 
@@ -92,6 +92,27 @@ list, add, edit and delete their machines (equipment model, label, plate or seri
 - **Rate limiting** of the creation of machines is left to your application (for example the Symfony
   rate limiter on the route `tmonier_equipment_shop_fleet_create`).
 - An equipment model used by at least one machine cannot be deleted in the administration.
+
+## Catalogue: "Compatible with my equipment"
+
+On the listing of a category (and on its search), a signed-in customer **whose fleet is not empty**
+gets a *Compatible with my equipment* control above the products. They choose *All my equipment*
+(the default once the filter is enabled), one machine, or *All parts* to remove the filter. The
+listing then only shows the products that have an enabled variant compatible with the chosen
+machine(s). The choice is kept in the session, so it follows the customer from page to page and
+category to category, and it is in the URL (`?equipment=all` or `?equipment=<uuid of the machine>`),
+so the pagination and the sorting keep it.
+
+- A visitor, a customer without machine, or an id that is not in the customer's fleet (another
+  customer's machine, an unknown id): no control, or the filter falls back to *All my equipment*.
+  Nothing tells that a foreign machine exists, and the listing is never an empty page by accident.
+- When no product fits, the page says so and offers *Remove the filter*.
+- The filter extends the product listing query of Sylius with an `EXISTS` sub-select; it needs no
+  search engine, and it costs no query as long as the customer does not select it (the control
+  itself reads the fleet once).
+- **Limit.** The filter is applied to the grid `sylius_shop_product` (categories and their search).
+  A listing that does not go through that grid (a custom controller, an API collection, a search
+  engine) needs its own hook: the plugin does not change it.
 
 ## Development
 

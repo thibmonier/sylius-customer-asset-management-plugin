@@ -8,7 +8,7 @@ Un client B2B déclare l'équipement qu'il possède (« Camion modèle X, plaque
 compte, et le catalogue peut être filtré sur les pièces détachées compatibles. Comportement :
 [`SPEC.md`](SPEC.md) ; décisions : [`docs/adr/`](docs/adr/).
 
-**Statut : 0.1.0 en préparation (pas encore publiée).**
+**Statut : 0.1.0 prête à être taguée (pas encore publiée).**
 
 ## Prérequis
 
@@ -93,6 +93,27 @@ numéro de série de 40 caractères au plus). Un client peut déclarer jusqu'à 
 - **Limitation du débit** de la création de machines : laissée à votre application (par exemple le
   rate limiter de Symfony sur la route `tmonier_equipment_shop_fleet_create`).
 - Un modèle d'équipement utilisé par au moins une machine ne peut pas être supprimé en administration.
+
+## Catalogue : « Compatible avec mon matériel »
+
+Sur la liste d'une catégorie (et sur sa recherche), un client connecté **dont le parc n'est pas vide**
+voit un contrôle *Compatible avec mon matériel* au-dessus des produits. Il choisit *Tout mon matériel*
+(par défaut une fois le filtre activé), une machine, ou *Toutes les pièces* pour retirer le filtre. La
+liste n'affiche alors que les produits qui ont une variante active compatible avec la ou les machines
+choisies. Le choix est conservé en session, donc il suit le client de page en page et de catégorie en
+catégorie, et il figure dans l'URL (`?equipment=all` ou `?equipment=<uuid de la machine>`), donc la
+pagination et le tri le gardent.
+
+- Un visiteur, un client sans machine, ou un identifiant qui n'est pas dans le parc du client (machine
+  d'un autre client, identifiant inconnu) : pas de contrôle, ou le filtre se replie sur *Tout mon
+  matériel*. Rien ne révèle qu'une machine étrangère existe, et la liste n'est jamais une page vide par accident.
+- Quand aucun produit ne convient, la page le dit et propose *Retirer le filtre*.
+- Le filtre étend la requête de liste des produits de Sylius par une sous-requête `EXISTS` ; il n'a
+  besoin d'aucun moteur de recherche, et ne coûte aucune requête tant que le client ne le sélectionne
+  pas (le contrôle lit le parc une fois).
+- **Limite.** Le filtre s'applique à la grille `sylius_shop_product` (catégories et leur recherche).
+  Une liste qui ne passe pas par cette grille (contrôleur sur mesure, collection d'API, moteur de
+  recherche) demande son propre point d'accroche : le plugin ne la modifie pas.
 
 ## Développement
 

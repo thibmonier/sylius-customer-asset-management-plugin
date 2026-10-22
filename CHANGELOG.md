@@ -13,6 +13,10 @@ All notable changes to this project are documented in this file. The format is b
   (UUID, voter, 404 for a machine that is not the customer's, shared with the company when the company
   accounts plugin is installed, `max_assets_per_customer`, deleted with the customer) (US-057).
 - An equipment model used by a machine cannot be deleted in the administration (US-057).
+- "Compatible with my equipment" filter on the listing of the categories and their search: all the
+  equipment or one machine, kept in the session and in the URL (`equipment` parameter), shown to a
+  signed-in customer with a non-empty fleet only, `EXISTS` sub-select on the listing query of Sylius,
+  no query when the filter is not selected (US-058).
 - CI on PHP 8.2 to 8.5 (Sylius 2.2 and 2.3, Symfony 6.4 to 8.0, MySQL, MariaDB, PostgreSQL), actions
   pinned by SHA, minimal `permissions`, Dependabot for the GitHub Actions.
 - Skeleton of the plugin (bundle), quality baseline (ECS, PHPStan max, Rector, PHPUnit), specification

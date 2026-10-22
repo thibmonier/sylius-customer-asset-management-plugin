@@ -57,3 +57,17 @@ predictable, server-side validation, GDPR (a plate may be personal data).
 - A listing that bypasses the Sylius repository (custom controller, API collection) needs its own hook.
 - Large compatibility tables need an index on `(equipment_model_id, variant_id)`; included in the migration.
 - Doctrine query extension ties the filter to the ORM listing implementation of Sylius 2.3.
+
+## Addendum (2026-10-22, implementation of US-058)
+
+Decision 4 is implemented as a decorator of the grid filters applicator of Sylius
+(`sylius.grid.filters_applicator`), limited to the grid `sylius_shop_product` that lists the
+products of a category and of its search. It adds the `EXISTS` sub-select to the ORM query of the
+grid when the customer selected the filter, so any listing built on that grid is covered and the
+filter costs no query when it is not selected. The query parameter is `equipment` and the choice is
+kept in the session. The negative consequences above still hold: a listing outside that grid
+(custom controller, API collection) needs its own hook.
+
+The primary key `(equipment_model_id, variant_id)` of the compatibility table is the index the
+sub-select joins on (read with EXPLAIN on MySQL).
+
