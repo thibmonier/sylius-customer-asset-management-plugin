@@ -1,0 +1,6 @@
+{% extends '@SyliusShop/account/common/index.html.twig' %}
+
+{% set prefixes = ['tmonier_equipment_shop.account.equipment_delete'] %}
+{% set attrs = { asset, page: 'delete' } %}
+
+{% block title %}{{ 'tmonier_equipment.ui.delete_machine'|trans }} | {{ parent() }}{% endblock %}

@@ -3,6 +3,15 @@
 All notable changes to this project are documented in this file. The format is based on
 [Keep a Changelog](https://keepachangelog.com/).
 
+## [Unreleased]
+
+### Changed
+
+- Deleting a machine of "My equipment" asks for a confirmation first: the Delete button of the list
+  opens a page that names the machine, with a confirm button (POST, CSRF token) and a cancel link.
+  It works without JavaScript; the `data-turbo-confirm` attribute of 0.1.0 had no effect on a shop
+  without Turbo (US-057).
+
 ## [0.1.0] - 2026-10-22
 
 ### Added

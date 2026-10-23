@@ -30,6 +30,8 @@ which machine. Today the buyer filters by hand or phones the seller.
 
 - A "My equipment" page in the account: list, add, edit, delete of the customer's assets
   (equipment model, label, plate or serial number).
+- Deleting a machine asks for a confirmation on a page of its own (no JavaScript needed); only the
+  confirm button of that page deletes (POST with a CSRF token).
 - The owner of an asset is the customer who declared it. A customer sees and changes **only their own** fleet (plus, when the company accounts plugin is installed, the fleet of the members of their company); any other id answers 404, never 403 (no existence leak).
 - Ids in URLs are UUIDs (not predictable); all input is validated on the server.
 

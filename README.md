@@ -77,7 +77,7 @@ see the field on the variant form.
 
 A signed-in customer finds *My equipment* in the menu of their account (`/{_locale}/account/equipment`):
 list, add, edit and delete their machines (equipment model, label, plate or serial number of up to
-40 characters). A customer can declare up to `max_assets_per_customer` machines.
+40 characters); a deletion is confirmed on a page of its own first. A customer can declare up to `max_assets_per_customer` machines.
 
 - **Isolation.** A customer sees and changes only their own fleet. With
   [`tmonier/sylius-company-accounts-plugin`](https://github.com/thibmonier/sylius-company-accounts-plugin)

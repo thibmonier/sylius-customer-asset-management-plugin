@@ -9,7 +9,6 @@ use Sylius\Component\Core\Model\ShopUserInterface;
 use Sylius\Component\Customer\Model\CustomerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -64,9 +63,13 @@ final class FleetController extends AbstractController
         return $this->handleForm($request, $asset, null, 'tmonier_equipment.asset_updated');
     }
 
-    public function deleteAction(Request $request, string $id): RedirectResponse
+    /** GET shows the confirmation page, POST deletes the machine. */
+    public function deleteAction(Request $request, string $id): Response
     {
         $asset = $this->accessibleAsset($id, CustomerAssetVoter::DELETE);
+        if (!$request->isMethod('POST')) {
+            return $this->render(self::TEMPLATE . 'delete.html.twig', ['asset' => $asset]);
+        }
         if (!$this->isCsrfTokenValid('tmonier_equipment_asset_delete_' . $asset->getId(), (string) $request->request->get('_csrf_token'))) {
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }

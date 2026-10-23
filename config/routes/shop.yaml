@@ -20,9 +20,10 @@ tmonier_equipment_shop_fleet_update:
     defaults:
         _controller: tmonier_equipment.controller.shop.fleet::updateAction
 
+# GET asks for a confirmation (a page, without JavaScript), POST deletes.
 tmonier_equipment_shop_fleet_delete:
     path: /account/equipment/{id}/delete
-    methods: [POST]
+    methods: [GET, POST]
     requirements:
         id: '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
     defaults:
