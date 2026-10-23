@@ -63,11 +63,32 @@ final class ShopFleetTest extends WebTestCase
         $crawler = $this->client->followRedirect();
         self::assertStringContainsString('Grenoble truck', $crawler->filter('[data-test-tmonier-equipment-asset]')->text());
 
-        $this->client->submit($crawler->filter(sprintf('form[action$="/account/equipment/%s/delete"]', $asset->getId()))->form());
+        $crawler = $this->client->click($crawler->filter('[data-test-tmonier-equipment-delete]')->link());
+        self::assertResponseIsSuccessful();
+        $this->client->submit($crawler->filter('[data-test-tmonier-equipment-confirm-delete]')->form());
         self::assertResponseRedirects($this->shopUrl('/account/equipment'));
         $crawler = $this->client->followRedirect();
         self::assertCount(0, $crawler->filter('[data-test-tmonier-equipment-asset]'));
         self::assertSame([], $this->assets()->findByOwners([$this->idOf($customer)]));
+    }
+
+    public function testDeletingAMachineAsksForAConfirmationFirst(): void
+    {
+        $customer = $this->catalog()->customer();
+        $asset = $this->catalog()->asset($customer, $this->catalog()->model('TRUCK', ['en_US' => 'Truck model X']), 'Lyon truck', self::PLATE);
+        $this->loginShopUser($customer);
+
+        $crawler = $this->client->request('GET', $this->shopUrl('/account/equipment'));
+        self::assertCount(0, $crawler->filter('[data-test-tmonier-equipment-assets] form'), 'the list deletes nothing by itself');
+        $crawler = $this->client->click($crawler->filter('[data-test-tmonier-equipment-delete]')->link());
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('Remove this machine from your equipment?', $crawler->filter('[data-test-tmonier-equipment-delete-question]')->text());
+        self::assertStringContainsString('Lyon truck', $crawler->filter('[data-test-tmonier-equipment-delete-question]')->text());
+        self::assertStringNotContainsString(self::PLATE, $crawler->filter('[data-test-tmonier-equipment-delete-question]')->text());
+        self::assertSame($this->shopUrl('/account/equipment'), $crawler->filter('[data-test-tmonier-equipment-cancel-delete]')->attr('href'));
+        $this->entityManager()->clear();
+        self::assertNotNull($this->assets()->findOneById($asset->getId()), 'showing the confirmation deletes nothing');
     }
 
     public function testTheFleetOfTheCompanyIsSharedBetweenItsMembers(): void
@@ -121,6 +142,8 @@ final class ShopFleetTest extends WebTestCase
         $this->client->request('GET', $this->shopUrl('/account/equipment/' . $foreign->getId() . '/edit'));
         self::assertResponseStatusCodeSame(404);
         $this->client->request('POST', $this->shopUrl('/account/equipment/' . $foreign->getId() . '/edit'), ['tmonier_equipment_customer_asset' => ['label' => 'Hijacked', 'identifier' => 'HACK', 'equipmentModel' => (string) $this->idOf($model), '_token' => $csrf]]);
+        self::assertResponseStatusCodeSame(404);
+        $this->client->request('GET', $this->shopUrl('/account/equipment/' . $foreign->getId() . '/delete'));
         self::assertResponseStatusCodeSame(404);
         $this->client->request('POST', $this->shopUrl('/account/equipment/' . $foreign->getId() . '/delete'), ['_csrf_token' => 'whatever']);
         self::assertResponseStatusCodeSame(404);

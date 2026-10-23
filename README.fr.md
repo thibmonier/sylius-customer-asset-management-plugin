@@ -77,7 +77,7 @@ et ne voient pas le champ du formulaire de variante.
 
 Un client connecté trouve *Mon matériel* dans le menu de son compte (`/{_locale}/account/equipment`) :
 liste, ajout, modification et suppression de ses machines (modèle d'équipement, libellé, plaque ou
-numéro de série de 40 caractères au plus). Un client peut déclarer jusqu'à `max_assets_per_customer` machines.
+numéro de série de 40 caractères au plus) ; une suppression se confirme d'abord sur une page dédiée. Un client peut déclarer jusqu'à `max_assets_per_customer` machines.
 
 - **Cloisonnement.** Un client ne voit et ne modifie que son propre parc. Avec
   [`tmonier/sylius-company-accounts-plugin`](https://github.com/thibmonier/sylius-company-accounts-plugin)

@@ -1,0 +1,16 @@
+{% set context = hookable_metadata.context %}
+{% set asset = context.asset %}
+
+<div class="row">
+    <div class="col-lg-8">
+        <form method="post" action="{{ path('tmonier_equipment_shop_fleet_delete', {'id': asset.id}) }}" {{ sylius_test_html_attribute('tmonier-equipment-confirm-delete') }}>
+            <p {{ sylius_test_html_attribute('tmonier-equipment-delete-question') }}>
+                {{ 'tmonier_equipment.ui.confirm_delete'|trans }}<br>
+                <strong>{{ asset.label }}</strong> ({{ asset.equipmentModel.name is not null ? asset.equipmentModel.name : asset.equipmentModel.code }})
+            </p>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('tmonier_equipment_asset_delete_' ~ asset.id) }}">
+            <button type="submit" class="btn btn-danger" style="--bs-btn-bg: #8a1c28; --bs-btn-border-color: #8a1c28; --bs-btn-hover-bg: #6f1620; --bs-btn-hover-border-color: #6f1620; --bs-btn-active-bg: #6f1620; --bs-btn-active-border-color: #6f1620">{{ 'tmonier_equipment.ui.confirm_delete_button'|trans }}</button>
+            <a class="btn btn-link" href="{{ path('tmonier_equipment_shop_fleet_index') }}" {{ sylius_test_html_attribute('tmonier-equipment-cancel-delete') }}>{{ 'sylius.ui.cancel'|trans }}</a>
+        </form>
+    </div>
+</div>

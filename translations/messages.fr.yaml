@@ -11,7 +11,9 @@ tmonier_equipment:
         equipment_model: Modèle d'équipement
         identifier: Plaque ou numéro de série
         actions: Actions
+        delete_machine: Retirer la machine
         confirm_delete: Retirer cette machine de votre matériel ?
+        confirm_delete_button: Oui, retirer la machine
         fleet_help: Les machines sont partagées avec les autres membres de votre entreprise. La plaque ou le numéro de série n'est visible que par vous et par eux.
     form:
         equipment_model:
