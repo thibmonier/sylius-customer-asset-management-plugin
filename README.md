@@ -8,7 +8,7 @@ A B2B customer declares the equipment they own ("Truck model X, plate AB-123-CD"
 and the catalogue can be filtered to the spare parts compatible with it. Behaviour: [`SPEC.md`](SPEC.md);
 decisions: [`docs/adr/`](docs/adr/).
 
-**Status: 0.1.0 released on [Packagist](https://packagist.org/packages/tmonier/sylius-customer-asset-management-plugin).**
+**Status: 0.1.1 released on [Packagist](https://packagist.org/packages/tmonier/sylius-customer-asset-management-plugin).**
 
 ## Requirements
 

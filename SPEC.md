@@ -58,7 +58,7 @@ by year or option (only model-to-variant); price or stock logic; a filter on the
 | Story | Content | Status |
 |---|---|---|
 | US-056 | Equipment models and variant compatibility (admin) | Done (0.1.0) |
-| US-057 | Customer fleet CRUD (customer area) | Done (0.1.0) |
+| US-057 | Customer fleet CRUD (customer area) | Done (0.1.0; delete confirmation 0.1.1) |
 | US-058 | "Compatible parts" catalogue filter | Done (0.1.0) |
 | US-059 | Publication (tag, Packagist, submitted by the maintainer) | Next |
 | US-060 | Integration in the B2B demo (demo data, plugin list entry) | Next |

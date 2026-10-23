@@ -8,7 +8,7 @@ Un client B2B déclare l'équipement qu'il possède (« Camion modèle X, plaque
 compte, et le catalogue peut être filtré sur les pièces détachées compatibles. Comportement :
 [`SPEC.md`](SPEC.md) ; décisions : [`docs/adr/`](docs/adr/).
 
-**Statut : 0.1.0 publiée sur [Packagist](https://packagist.org/packages/tmonier/sylius-customer-asset-management-plugin).**
+**Statut : 0.1.1 publiée sur [Packagist](https://packagist.org/packages/tmonier/sylius-customer-asset-management-plugin).**
 
 ## Prérequis
 
