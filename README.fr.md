@@ -8,7 +8,7 @@ Un client B2B déclare l'équipement qu'il possède (« Camion modèle X, plaque
 compte, et le catalogue peut être filtré sur les pièces détachées compatibles. Comportement :
 [`SPEC.md`](SPEC.md) ; décisions : [`docs/adr/`](docs/adr/).
 
-**Statut : 0.1.0 prête à être taguée (pas encore publiée).**
+**Statut : 0.1.0 publiée sur [Packagist](https://packagist.org/packages/tmonier/sylius-customer-asset-management-plugin).**
 
 ## Prérequis
 
@@ -147,9 +147,9 @@ php -d memory_limit=2G vendor/bin/phpunit
 <!-- vitrine:demo-b2b:start -->
 ## Démo B2B
 
-Statut : **non présent dans la démo** pour l'instant. La [démo B2B Sylius](https://github.com/thibmonier/sylius-b2b-demo) n'intègre pas ce plugin, et aucune page ni donnée de démo n'existe pour lui.
+Ce plugin est utilisé dans la [démo B2B Sylius](https://github.com/thibmonier/sylius-b2b-demo) : une boutique Sylius 2.3 avec des données d'exemple fictives, où les plugins B2B fonctionnent ensemble. Le code source, l'installation et les fixtures de la démo sont dans ce dépôt.
 
-- Auteur : [Thibaut Monier](https://www.linkedin.com/in/thibautmonier/)
+La démo est un exemple, pas une configuration de production.
 <!-- vitrine:demo-b2b:end -->
 
 ## Licence

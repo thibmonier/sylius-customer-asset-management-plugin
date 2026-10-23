@@ -8,7 +8,7 @@ A B2B customer declares the equipment they own ("Truck model X, plate AB-123-CD"
 and the catalogue can be filtered to the spare parts compatible with it. Behaviour: [`SPEC.md`](SPEC.md);
 decisions: [`docs/adr/`](docs/adr/).
 
-**Status: 0.1.0 ready to be tagged (not released yet).**
+**Status: 0.1.0 released on [Packagist](https://packagist.org/packages/tmonier/sylius-customer-asset-management-plugin).**
 
 ## Requirements
 
@@ -146,9 +146,9 @@ php -d memory_limit=2G vendor/bin/phpunit
 <!-- vitrine:demo-b2b:start -->
 ## B2B demo
 
-Status: **not present in the demo** yet. The [Sylius B2B demo](https://github.com/thibmonier/sylius-b2b-demo) does not include this plugin, and no demo page or data exists for it.
+This plugin is used in the [Sylius B2B demo](https://github.com/thibmonier/sylius-b2b-demo): a Sylius 2.3 shop with fictitious sample data where the B2B plugins work together. The source code, setup and fixtures of the demo are in that repository.
 
-- Author: [Thibaut Monier](https://www.linkedin.com/in/thibautmonier/)
+The demo is an example, not a production setup.
 <!-- vitrine:demo-b2b:end -->
 
 ## License
