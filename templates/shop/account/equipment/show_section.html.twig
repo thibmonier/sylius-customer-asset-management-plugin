@@ -25,5 +25,6 @@
     </div>
 </div>
 
-{# Extension point: other plugins (for example the product passport) add blocks here. #}
-{% hook 'tmonier_equipment_shop.account.equipment_show.extensions' with { asset: context.asset, equipment_model: context.asset.equipmentModel } %}
+{# Extension point: other plugins (for example the product passport) add blocks here. `_prefixes: []` keeps the
+   documented absolute name: inside a hookable, Sylius would otherwise prefix it with the names of the parent hooks. #}
+{% hook 'tmonier_equipment_shop.account.equipment_show.extensions' with { _prefixes: [], asset: context.asset, equipment_model: context.asset.equipmentModel } %}

@@ -36,9 +36,8 @@ final class EquipmentShowTest extends WebTestCase
         $crawler = $this->client->request('GET', $this->shopUrl('/account/equipment/' . $asset->getId()));
 
         self::assertResponseIsSuccessful();
-        // The extension hook is rendered: in the test environment, Twig hooks leave a debug comment with their name.
-        $html = (string) $this->client->getResponse()->getContent();
-        self::assertStringContainsString('tmonier_equipment_shop.account.equipment_show.extensions', $html);
+        // A block hooked under the documented name (the probe of the test application) is rendered with the context.
+        self::assertSelectorTextContains('[data-test-equipment-extension-probe]', 'Lyon Truck / TRUCK_X');
     }
 
     public function testTheEquipmentListHasALinkToTheDetailsPage(): void
