@@ -23,7 +23,7 @@
             <tbody>
                 {% for asset in context.assets %}
                     <tr {{ sylius_test_html_attribute('tmonier-equipment-asset', asset.id) }}>
-                        <th scope="row">{{ asset.label }}</th>
+                        <th scope="row"><a href="{{ path('tmonier_equipment_shop_fleet_show', {'id': asset.id}) }}">{{ asset.label }}</a></th>
                         <td>{{ asset.equipmentModel.name is not null ? asset.equipmentModel.name : asset.equipmentModel.code }}</td>
                         <td>{{ asset.identifier }}</td>
                         <td class="text-end">

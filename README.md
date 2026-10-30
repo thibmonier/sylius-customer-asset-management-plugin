@@ -79,6 +79,8 @@ A signed-in customer finds *My equipment* in the menu of their account (`/{_loca
 list, add, edit and delete their machines (equipment model, label, plate or serial number of up to
 40 characters); a deletion is confirmed on a page of its own first. A customer can declare up to `max_assets_per_customer` machines.
 
+- **Machine page.** Each machine of the list opens its own page (`/{_locale}/account/equipment/{id}`): label, equipment model, plate or serial number and the date it was added. The page exposes the Twig hook `tmonier_equipment_shop.account.equipment_show.extensions` (context: `asset`, `equipment_model`) where another plugin can add a block, for example the product passport of the equipment model.
+
 - **Isolation.** A customer sees and changes only their own fleet. With
   [`tmonier/sylius-company-accounts-plugin`](https://github.com/thibmonier/sylius-company-accounts-plugin)
   installed, the fleet is shared with the active members of the customer's company; the plugin works

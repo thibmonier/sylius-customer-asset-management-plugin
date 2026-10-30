@@ -56,6 +56,11 @@ final class FleetController extends AbstractController
         return $this->handleForm($request, $asset, $customer, 'tmonier_equipment.asset_created');
     }
 
+    public function showAction(string $id): Response
+    {
+        return $this->render(self::TEMPLATE . 'show.html.twig', ['asset' => $this->accessibleAsset($id, CustomerAssetVoter::VIEW)]);
+    }
+
     public function updateAction(Request $request, string $id): Response
     {
         $asset = $this->accessibleAsset($id, CustomerAssetVoter::EDIT);

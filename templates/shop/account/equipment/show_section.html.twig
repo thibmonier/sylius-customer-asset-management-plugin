@@ -1,0 +1,29 @@
+{% set context = hookable_metadata.context %}
+
+<div class="card" {{ sylius_test_html_attribute('equipment-details') }}>
+    <div class="card-body">
+        <h2 class="h5 card-title">{{ 'tmonier_equipment.ui.equipment_details'|trans }}</h2>
+
+        <dl class="row">
+            <dt class="col-sm-3">{{ 'tmonier_equipment.ui.label'|trans }}</dt>
+            <dd class="col-sm-9">{{ context.asset.label }}</dd>
+
+            <dt class="col-sm-3">{{ 'tmonier_equipment.ui.equipment_model'|trans }}</dt>
+            <dd class="col-sm-9">{{ context.asset.equipmentModel.name ?? context.asset.equipmentModel.code }}</dd>
+
+            <dt class="col-sm-3">{{ 'tmonier_equipment.ui.identifier'|trans }}</dt>
+            <dd class="col-sm-9">{{ context.asset.identifier }}</dd>
+
+            <dt class="col-sm-3">{{ 'tmonier_equipment.ui.added_on'|trans }}</dt>
+            <dd class="col-sm-9">{{ context.asset.createdAt|date('Y-m-d') }}</dd>
+        </dl>
+
+        <div class="mt-3">
+            <a class="btn btn-outline-primary" href="{{ path('tmonier_equipment_shop_fleet_update', {'id': context.asset.id}) }}">{{ 'sylius.ui.edit'|trans }}</a>
+            <a class="btn btn-outline-secondary" href="{{ path('tmonier_equipment_shop_fleet_index') }}">{{ 'sylius.ui.back_to_list'|trans }}</a>
+        </div>
+    </div>
+</div>
+
+{# Extension point: other plugins (for example the product passport) add blocks here. #}
+{% hook 'tmonier_equipment_shop.account.equipment_show.extensions' with { asset: context.asset, equipment_model: context.asset.equipmentModel } %}

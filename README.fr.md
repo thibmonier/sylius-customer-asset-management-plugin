@@ -79,6 +79,8 @@ Un client connecté trouve *Mon matériel* dans le menu de son compte (`/{_local
 liste, ajout, modification et suppression de ses machines (modèle d'équipement, libellé, plaque ou
 numéro de série de 40 caractères au plus) ; une suppression se confirme d'abord sur une page dédiée. Un client peut déclarer jusqu'à `max_assets_per_customer` machines.
 
+- **Page d'une machine.** Chaque machine de la liste ouvre sa page (`/{_locale}/account/equipment/{id}`) : libellé, modèle d'équipement, plaque ou numéro de série et date d'ajout. La page expose le hook Twig `tmonier_equipment_shop.account.equipment_show.extensions` (contexte : `asset`, `equipment_model`) où un autre plugin peut ajouter un bloc, par exemple le passeport produit du modèle d'équipement.
+
 - **Cloisonnement.** Un client ne voit et ne modifie que son propre parc. Avec
   [`tmonier/sylius-company-accounts-plugin`](https://github.com/thibmonier/sylius-company-accounts-plugin)
   installé, le parc est partagé avec les membres actifs de l'entreprise du client ; le plugin fonctionne
