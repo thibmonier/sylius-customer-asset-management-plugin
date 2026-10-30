@@ -58,7 +58,7 @@ final class FleetController extends AbstractController
 
     public function showAction(string $id): Response
     {
-        return $this->render(self::TEMPLATE . 'show.html.twig', ['asset' => $this->accessibleAsset($id, CustomerAssetVoter::VIEW)]);
+        return $this->render(self::TEMPLATE . 'show.html.twig', ['asset' => $this->assets->findOneById($id)]);
     }
 
     public function updateAction(Request $request, string $id): Response
