@@ -11,6 +11,8 @@ tmonier_equipment:
         equipment_model: Modèle d'équipement
         identifier: Plaque ou numéro de série
         actions: Actions
+        equipment_details: Détails de l'équipement
+        added_on: Ajouté le
         delete_machine: Retirer la machine
         confirm_delete: Retirer cette machine de votre matériel ?
         confirm_delete_button: Oui, retirer la machine

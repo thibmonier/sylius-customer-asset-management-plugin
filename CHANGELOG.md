@@ -3,6 +3,13 @@
 All notable changes to this project are documented in this file. The format is based on
 [Keep a Changelog](https://keepachangelog.com/).
 
+## [Unreleased]
+
+### Added
+
+- A page per machine in "My equipment" (`/{_locale}/account/equipment/{id}`), linked from the list, with the
+  Twig hook `tmonier_equipment_shop.account.equipment_show.extensions` for other plugins (US-242).
+
 ## [0.1.1] - 2026-10-23
 
 ### Changed
