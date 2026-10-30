@@ -22,10 +22,9 @@ final class EquipmentAccessControlTest extends WebTestCase
         $this->client->request('GET', $this->shopUrl('/account/equipment/' . $foreignAsset->getId()));
 
         self::assertResponseStatusCodeSame(404);
-        // Verify no data from the other company's equipment is shown
-        $content = (string) $this->client->getResponse()->getContent();
-        self::assertStringNotContainsString('Foreign Truck', $content);
-        self::assertStringNotContainsString('ZZ-999-YY', $content);
+        // The details of the other company's machine are not rendered. The raw body is not searched: in the test
+        // environment the error page shows the source of this test, which contains the label and the plate.
+        self::assertSelectorNotExists('[data-test-equipment-details]');
     }
 
     public function testAVisitorNotLoggedInIsRedirectedToLogin(): void
