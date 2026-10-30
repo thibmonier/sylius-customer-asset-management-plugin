@@ -3,6 +3,14 @@
 All notable changes to this project are documented in this file. The format is based on
 [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.1] - 2026-10-30
+
+### Fixed
+
+- The extension hook of the machine page now keeps its documented name
+  `tmonier_equipment_shop.account.equipment_show.extensions`: in 0.2.0, Sylius prefixed it with the names of the parent
+  hooks, so a block registered under the documented name was never rendered (US-242).
+
 ## [0.2.0] - 2026-10-30
 
 ### Added
