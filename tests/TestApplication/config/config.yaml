@@ -8,3 +8,15 @@ tmonier_sylius_customer_asset_management:
     admin_role: ROLE_EQUIPMENT_MANAGER
     # Small limit so that the test of the limit stays quick.
     max_assets_per_customer: 3
+
+# A probe hooked on the extension hook of the machine page, under its documented name, to check that another plugin can
+# add a block there (US-242).
+twig:
+    paths:
+        '%kernel.project_dir%/../../../tests/TestApplication/templates': TestApp
+
+sylius_twig_hooks:
+    hooks:
+        'tmonier_equipment_shop.account.equipment_show.extensions':
+            probe:
+                template: '@TestApp/equipment_extension_probe.html.twig'
