@@ -13,6 +13,10 @@
         <server name="IS_DOCTRINE_ORM_SUPPORTED" value="true"/>
         <server name="EXPECTED_RESPONSE_DIR" value="../Responses/Expected"/>
 
+        <server name="SYLIUS_TEST_APP_BUNDLES_PATH" value="tests/TestApplication/config/bundles.php"/>
+        <server name="SYLIUS_TEST_APP_CONFIGS_TO_IMPORT" value="@TmonierSyliusCustomerAssetManagementPlugin/tests/TestApplication/config/config.yaml"/>
+        <server name="SYLIUS_TEST_APP_ROUTES_TO_IMPORT" value="@TmonierSyliusCustomerAssetManagementPlugin/tests/TestApplication/config/routes.yaml"/>
+
         <env name="APP_SECRET" value="''" />
         <env name="APP_ENV" value="test"/>
     </php>
