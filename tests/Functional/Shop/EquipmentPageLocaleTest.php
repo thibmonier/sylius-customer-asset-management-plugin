@@ -33,6 +33,7 @@ final class EquipmentPageLocaleTest extends WebTestCase
         );
         $this->enableLocale($locale);
         $this->loginShopUser($customer);
+        $this->entityManager()->clear();
 
         $this->client->request('GET', '/' . $locale . '/account/equipment');
 
@@ -61,10 +62,12 @@ final class EquipmentPageLocaleTest extends WebTestCase
             $this->catalog()->model('TRUCK', ['en_US' => 'Truck Model X', 'fr_FR' => 'Camion Modèle X']),
             'Lyon Truck',
         );
+        $assetId = $asset->getId();
         $this->enableLocale($locale);
         $this->loginShopUser($customer);
+        $this->entityManager()->clear();
 
-        $this->client->request('GET', '/' . $locale . '/account/equipment/' . $asset->getId());
+        $this->client->request('GET', '/' . $locale . '/account/equipment/' . $assetId);
 
         self::assertResponseIsSuccessful();
         $content = (string) $this->client->getResponse()->getContent();
