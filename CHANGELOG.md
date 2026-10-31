@@ -3,6 +3,13 @@
 All notable changes to this project are documented in this file. The format is based on
 [Keep a Changelog](https://keepachangelog.com/).
 
+## [Unreleased]
+
+### Fixed
+
+- Machine page: the last breadcrumb is the label of the machine (it read "Edit the machine"), and the back button is
+  translated ("Back to my equipment", it showed the raw key `sylius.ui.back_to_list`).
+
 ## [0.2.1] - 2026-10-30
 
 ### Fixed

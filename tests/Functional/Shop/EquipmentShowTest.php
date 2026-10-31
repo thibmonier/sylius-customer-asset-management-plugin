@@ -53,4 +53,20 @@ final class EquipmentShowTest extends WebTestCase
         $link = $crawler->filter(sprintf('a[href="%s"]', $this->shopUrl('/account/equipment/' . $asset->getId())));
         self::assertCount(1, $link, 'The equipment list should have a link to the details page');
     }
+
+    public function testTheDetailsPageNamesTheMachineInTheBreadcrumbsAndTranslatesTheBackButton(): void
+    {
+        $customer = $this->catalog()->customer();
+        $model = $this->catalog()->model('TRUCK_X', ['en_US' => 'Truck Model X']);
+        $asset = $this->catalog()->asset($customer, $model, 'Lyon Truck');
+        $this->loginShopUser($customer);
+
+        $crawler = $this->client->request('GET', $this->shopUrl('/account/equipment/' . $asset->getId()));
+
+        self::assertResponseIsSuccessful();
+        self::assertSelectorTextSame('.breadcrumb .breadcrumb-item.active', 'Lyon Truck');
+        $back = $crawler->filter(sprintf('[data-test-equipment-details] a[href="%s"]', $this->shopUrl('/account/equipment')));
+        self::assertCount(1, $back);
+        self::assertSame('Back to my equipment', trim($back->text()));
+    }
 }

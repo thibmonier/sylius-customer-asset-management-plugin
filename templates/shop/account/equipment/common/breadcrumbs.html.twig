@@ -11,7 +11,7 @@
     {% set current = context.page == 'delete' ? 'tmonier_equipment.ui.delete_machine' : (context.asset.label is null ? 'tmonier_equipment.ui.add_machine' : 'tmonier_equipment.ui.edit_machine') %}
     {% set items = items|merge([
         { label: 'tmonier_equipment.ui.my_equipment'|trans, path: path('tmonier_equipment_shop_fleet_index') },
-        { label: current|trans, active: true },
+        { label: context.page == 'show' ? context.asset.label : current|trans, active: true },
     ]) %}
 {% endif %}
 
