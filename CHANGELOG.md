@@ -5,6 +5,8 @@ All notable changes to this project are documented in this file. The format is b
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-10-31
+
 ### Fixed
 
 - Machine page: the last breadcrumb is the label of the machine (it read "Edit the machine"), and the back button is
