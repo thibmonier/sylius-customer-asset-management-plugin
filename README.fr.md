@@ -127,6 +127,8 @@ pagination et le tri le gardent.
 
 ![Ajout d'une machine](docs/images/shop-equipment-form-desktop-fr.jpg)
 
+![La page d'une machine, avec le bloc passeport produit du plugin Digital Product Passport](docs/images/shop-equipment-show-desktop-fr.jpg)
+
 ![Catalogue filtré sur les pièces compatibles avec le matériel du client](docs/images/shop-compatible-filter-desktop-fr.jpg)
 
 ![Message quand aucun produit ne convient, avec le lien pour retirer le filtre](docs/images/shop-compatible-filter-empty-desktop-fr.jpg)
