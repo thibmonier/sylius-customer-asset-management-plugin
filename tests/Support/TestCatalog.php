@@ -108,10 +108,12 @@ final class TestCatalog
         $factory = $this->container->get('tmonier_equipment.factory.equipment_model');
         $model = $factory->createNew();
         $model->setCode(sprintf('%s-%s-%d', $code, $this->suffix, ++$this->sequence));
+        $model->setFallbackLocale($this->localeCode());
         foreach ($names as $locale => $name) {
             $model->setCurrentLocale($locale);
             $model->setName($name);
         }
+        $model->setCurrentLocale($this->localeCode());
         $this->entityManager()->persist($model);
         $this->entityManager()->flush();
 

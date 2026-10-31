@@ -31,11 +31,12 @@ return static function (ContainerConfigurator $container): void {
 
     // The equipment model repository is registered by the Sylius resource configuration.
     $services
-        ->set('tmonier_equipment.repository.customer_asset', CustomerAssetRepository::class)
+        ->set(CustomerAssetRepository::class)
         ->args([service('doctrine')])
         ->tag('doctrine.repository_service')
     ;
-    $services->alias(CustomerAssetRepositoryInterface::class, 'tmonier_equipment.repository.customer_asset');
+    $services->alias('tmonier_equipment.repository.customer_asset', CustomerAssetRepository::class);
+    $services->alias(CustomerAssetRepositoryInterface::class, CustomerAssetRepository::class);
 
     // Whose machines a customer reaches: their own; with the company accounts plugin, also those of their company.
     $services->set('tmonier_equipment.fleet_scope.customer', CustomerFleetScope::class);
