@@ -13,6 +13,7 @@ tmonier_equipment:
         actions: Actions
         equipment_details: Equipment details
         added_on: Added on
+        back_to_my_equipment: Back to my equipment
         delete_machine: Remove the machine
         confirm_delete: Remove this machine from your equipment?
         confirm_delete_button: Yes, remove the machine
