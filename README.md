@@ -126,6 +126,8 @@ so the pagination and the sorting keep it.
 
 ![Adding a machine](docs/images/shop-equipment-form-desktop-en.jpg)
 
+![The page of a machine, with the product passport block of the Digital Product Passport plugin](docs/images/shop-equipment-show-desktop-en.jpg)
+
 ![Catalogue filtered on the parts compatible with the customer's equipment](docs/images/shop-compatible-filter-desktop-en.jpg)
 
 ![Message when no product fits, with the link to remove the filter](docs/images/shop-compatible-filter-empty-desktop-en.jpg)
